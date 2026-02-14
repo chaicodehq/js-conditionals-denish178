@@ -29,6 +29,88 @@
  * @param {number} serviceRating - Service rating from 1 to 5
  * @returns {{ tipPercentage: number, tipAmount: number, totalAmount: number } | null}
  */
+
 export function calculateTip(billAmount, serviceRating) {
   // Your code here
+  // if (billAmount <= 0 || serviceRating <= 0 || serviceRating > 5) return null;
+  // if(!Number.isInteger(serviceRating)) return null;
+
+  // let tipAmt = 0;
+  // let totalAmt = 0;
+
+  // if (serviceRating == 1) {
+  //   tipAmt = (billAmount * 5) / 100;
+  //   totalAmt = billAmount + tipAmt;
+  //   return {
+  //     tipPercentage: 5,
+  //     tipAmount: tipAmt,
+  //     totalAmount: totalAmt,
+  //   };
+  // } else if (serviceRating == 2) {
+  //   tipAmt = (billAmount * 10) / 100;
+  //   totalAmt = billAmount + tipAmt;
+  //   return {
+  //     tipPercentage: 10,
+  //     tipAmount: tipAmt,
+  //     totalAmount: totalAmt,
+  //   };
+  // } else if (serviceRating == 3) {
+  //   tipAmt = (billAmount * 15) / 100;
+  //   totalAmt = billAmount + tipAmt;
+  //   return {
+  //     tipPercentage: 15,
+  //     tipAmount: tipAmt,
+  //     totalAmount: totalAmt,
+  //   };
+  // } else if (serviceRating == 4) {
+  //   tipAmt = (billAmount * 20) / 100;
+  //   totalAmt = billAmount + tipAmt;
+  //   return {
+  //     tipPercentage: 20,
+  //     tipAmount: tipAmt,
+  //     totalAmount: totalAmt,
+  //   };
+  // } else {
+  //   tipAmt = (billAmount * 25) / 100;
+  //   totalAmt = billAmount + tipAmt;
+  //   return {
+  //     tipPercentage: 25,
+  //     tipAmount: tipAmt,
+  //     totalAmount: totalAmt,
+  //   };
+  // }
+
+  // Input validation
+  if (billAmount <= 0) {
+    return null;
+  } else if (
+    !Number.isInteger(serviceRating) ||
+    serviceRating < 1 ||
+    serviceRating > 5
+  ) {
+    return null;
+  }
+
+  let tipPercentage;
+
+  if (serviceRating === 1) {
+    tipPercentage = 5;
+  } else if (serviceRating === 2) {
+    tipPercentage = 10;
+  } else if (serviceRating === 3) {
+    tipPercentage = 15;
+  } else if (serviceRating === 4) {
+    tipPercentage = 20;
+  } else {
+    tipPercentage = 25;
+  }
+
+  const tipAmount = Number(((billAmount * tipPercentage) / 100).toFixed(2));
+  const totalAmount = Number((billAmount + tipAmount).toFixed(2));
+
+  return {
+    tipPercentage,
+    tipAmount,
+    totalAmount,
+  };
 }
